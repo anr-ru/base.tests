@@ -43,11 +43,6 @@
 		    <version>${base.utils.version}</version>
 		</dependency>
         <dependency>
-            <groupId>ru.anr</groupId>
-            <artifactId>base.tests</artifactId>
-            <version>${base.tests.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
         </dependency>
@@ -69,7 +64,6 @@
 	
     <properties>
         <base.utils.version>0.0.1-SNAPSHOT</base.utils.version>
-        <base.tests.version>0.0.1-SNAPSHOT</base.tests.version>
     </properties>
 	
 </project>

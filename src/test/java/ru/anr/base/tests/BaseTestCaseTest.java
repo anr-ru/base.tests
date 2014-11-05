@@ -5,7 +5,6 @@ package ru.anr.base.tests;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.ContextConfiguration;
 
 /**
@@ -20,25 +19,11 @@ import org.springframework.test.context.ContextConfiguration;
 public class BaseTestCaseTest extends BaseTestCase {
 
     /**
-     * Define a test bean
-     * 
-     * @return Bean instance
-     */
-    @Bean(name = "bean")
-    public String factory() {
-
-        return "Factory";
-    }
-
-    /**
-     * Test method for
-     * {@link ru.anr.base.tests.BaseTestCase#bean(java.lang.String, java.lang.Class)}
-     * .
+     * Here is nothing to test
      */
     @Test
     public void testBean() {
 
-        String x = bean("bean", String.class);
-        Assert.assertEquals("Factory", x);
+        Assert.assertTrue(true);
     }
 }
