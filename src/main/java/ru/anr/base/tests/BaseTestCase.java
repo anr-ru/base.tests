@@ -5,6 +5,8 @@ package ru.anr.base.tests;
 
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import ru.anr.base.BaseSpringParent;
@@ -22,6 +24,7 @@ import ru.anr.base.BaseSpringParent;
 public class BaseTestCase extends BaseSpringParent {
 
     /**
-     * Empty for now
+     * Logger used in all tests
      */
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 }
