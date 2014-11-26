@@ -12,7 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
  *
  *
  * @author Alexey Romanchuk
- * @created 03 нояб. 2014 г.
+ * @created Nov 3, 2014
  *
  */
 @ContextConfiguration(classes = BaseTestCaseTest.class)
@@ -24,6 +24,6 @@ public class BaseTestCaseTest extends BaseTestCase {
     @Test
     public void testBean() {
 
-        Assert.assertTrue(true);
+        Assert.assertNotNull(getEnv());
     }
 }

@@ -9,15 +9,15 @@
 	</parent>
 	
 	<artifactId>base.tests</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.5-SNAPSHOT</version>
 
 	<name>Base Tests Project</name>
 	<description>Prototype for projects with junit testing</description>
 	
     <licenses>
         <license>
-            <name>The MIT License (MIT)</name>
-            <url>http://opensource.org/licenses/MIT</url>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
 
@@ -60,10 +60,15 @@
             <!-- Yes, here is compile -->
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 	
     <properties>
-        <base.utils.version>0.0.1-SNAPSHOT</base.utils.version>
+        <base.utils.version>0.5-SNAPSHOT</base.utils.version>
     </properties>
 	
 </project>
