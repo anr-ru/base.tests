@@ -1,6 +1,8 @@
-The project is licensed under The MIT License (MIT), http://opensource.org/licenses/MIT
+Base.Platform Project
 
-base.tests
-==========
+===========
+Base.Platform.Tests
+===========
 
-Prototype project for JUnit testing
+Prototype project for JUnit testing. The BaseTestCase can be used as a parent class for JUnit tests (it contains
+a lot of diffrent short-cut and util functions).
