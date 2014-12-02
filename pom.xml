@@ -4,16 +4,15 @@
 	
 	<parent>
 	   <groupId>ru.anr</groupId>
-	   <artifactId>config.java</artifactId>
-	   <version>0.9-SNAPSHOT</version>
+	   <artifactId>base.platform.parent</artifactId>
+	   <version>0.5-SNAPSHOT</version>
 	</parent>
 	
 	<artifactId>base.tests</artifactId>
-	<version>0.5-SNAPSHOT</version>
 
 	<name>Base Tests Project</name>
 	<description>Prototype for projects with junit testing</description>
-	
+
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -40,24 +39,11 @@
 		<dependency>
 		    <groupId>ru.anr</groupId>
 		    <artifactId>base.utils</artifactId>
-		    <version>${base.utils.version}</version>
 		</dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
+        <!-- Yes, these both are compile-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <!-- Yes, here is compile -->
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -66,9 +52,5 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-	
-    <properties>
-        <base.utils.version>0.5-SNAPSHOT</base.utils.version>
-    </properties>
 	
 </project>
