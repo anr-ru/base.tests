@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import ru.anr.base.ApplicationException;
 import ru.anr.base.BaseSpringParent;
 
 /**
@@ -70,7 +71,9 @@ public class BaseTestCase extends BaseSpringParent {
      */
     public static void assertException(Exception ex, String msgPart, Class<?> expectedClass) {
 
-        Assert.assertThat(ex, new IsInstanceOf(expectedClass));
-        Assert.assertThat(msgPart, new StringContains(ex.getMessage()));
+        Exception rootException = (Exception) new ApplicationException(ex).getRootCause();
+
+        Assert.assertThat(rootException, new IsInstanceOf(expectedClass));
+        Assert.assertThat(rootException.getMessage(), new StringContains(msgPart));
     }
 }
