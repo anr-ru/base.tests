@@ -10,7 +10,7 @@
 	
 	<artifactId>base.tests</artifactId>
 
-	<name>Base Tests Project</name>
+	<name>Base Tests</name>
 	<description>Prototype for projects with junit testing</description>
 
     <licenses>
