@@ -69,11 +69,26 @@ public class BaseTestCase extends BaseSpringParent {
      * @param expectedClass
      *            Exception class to be
      */
-    public static void assertException(Exception ex, String msgPart, Class<?> expectedClass) {
+    public static void assertException(Throwable ex, String msgPart, Class<?> expectedClass) {
 
-        Exception rootException = (Exception) new ApplicationException(ex).getRootCause();
+        Throwable rootException = new ApplicationException(ex).getRootCause();
 
-        Assert.assertThat(rootException, new IsInstanceOf(expectedClass));
+        if (expectedClass != null) {
+            Assert.assertThat(rootException, new IsInstanceOf(expectedClass));
+        }
         Assert.assertThat(rootException.getMessage(), new StringContains(msgPart));
+    }
+
+    /**
+     * Assertion of specific Exception
+     * 
+     * @param ex
+     *            Exception to be asserted
+     * @param msgPart
+     *            A string to find in the exception message
+     */
+    public static void assertException(Throwable ex, String msgPart) {
+
+        assertException(ex, msgPart, null);
     }
 }
