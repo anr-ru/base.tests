@@ -60,6 +60,24 @@ public class BaseTestCase extends BaseSpringParent {
     }
 
     /**
+     * Builds a new bean by the provided bean class. This function is useful in
+     * tests with mocks, when you need to create a bean with some mocked
+     * properties without breaking the origin bean from the context.
+     * 
+     * @param beanClass
+     *            The class of the bean
+     * @return A bean instance
+     * 
+     * @param <S>
+     *            The type of the bean
+     * 
+     */
+    protected <S> S bean(Class<S> beanClass) {
+
+        return ctx.getAutowireCapableBeanFactory().createBean(beanClass);
+    }
+
+    /**
      * Assertion of specific Exception
      * 
      * @param ex
