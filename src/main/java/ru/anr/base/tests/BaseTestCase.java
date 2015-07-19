@@ -98,6 +98,20 @@ public class BaseTestCase extends BaseSpringParent {
     }
 
     /**
+     * Asserts the 'str' argument contains the specified string (the 'part'
+     * argument)
+     * 
+     * @param str
+     *            The string - container
+     * @param part
+     *            The part to check
+     */
+    public static void assertContains(String str, String part) {
+
+        Assert.assertThat(str, new StringContains(part));
+    }
+
+    /**
      * Assertion of specific Exception
      * 
      * @param ex
