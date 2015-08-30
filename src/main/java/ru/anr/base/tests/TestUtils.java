@@ -35,6 +35,14 @@ public final class TestUtils {
      */
     public static String randomPhone() {
 
-        return String.valueOf(RandomUtils.nextLong(10000000000L, 99999999999L));
+        return String.valueOf(RandomUtils.nextLong(79120000000L, 79129999999L));
+    }
+
+    /**
+     * @return random phone
+     */
+    public static String randomAmericanPhone() {
+
+        return String.valueOf(RandomUtils.nextLong(15417500000L, 15417599999L));
     }
 }
