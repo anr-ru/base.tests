@@ -123,4 +123,39 @@ public class BaseTestCase extends BaseSpringParent {
 
         assertException(ex, msgPart, null);
     }
+
+    /**
+     * Just a call back
+     */
+    @FunctionalInterface
+    public interface AssertedExceptionCallback {
+
+        /**
+         * Does something
+         * 
+         * @param x
+         *            The argument
+         */
+        void doSomething(Object... x);
+    }
+
+    /**
+     * Asserts an access denied error
+     * 
+     * @param callback
+     *            The callback to use
+     * @param msg
+     *            The exception message to check
+     * @param objects
+     *            The objects
+     */
+    protected void assertException(AssertedExceptionCallback callback, String msg, Object... objects) {
+
+        try {
+            callback.doSomething(objects);
+            Assert.fail("Failure is expected");
+        } catch (Exception ex) {
+            assertException(ex, msg);
+        }
+    }
 }
