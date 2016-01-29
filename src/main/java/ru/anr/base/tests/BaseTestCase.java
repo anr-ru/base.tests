@@ -87,14 +87,27 @@ public class BaseTestCase extends BaseSpringParent {
      * @param expectedClass
      *            Exception class to be
      */
-    public static void assertException(Throwable ex, String msgPart, Class<?> expectedClass) {
+    public void assertException(Throwable ex, String msgPart, Class<?> expectedClass) {
 
         Throwable rootException = new ApplicationException(ex).getRootCause();
 
         if (expectedClass != null) {
             Assert.assertThat(rootException, new IsInstanceOf(expectedClass));
         }
-        Assert.assertThat(rootException.getMessage(), new StringContains(msgPart));
+        String msg = extractMessage(rootException);
+        Assert.assertThat(msg, new StringContains(msgPart));
+    }
+
+    /**
+     * Extracts the message from the specified exception
+     * 
+     * @param ex
+     *            The exception
+     * @return The message
+     */
+    protected String extractMessage(Throwable ex) {
+
+        return ex.getMessage();
     }
 
     /**
@@ -119,7 +132,7 @@ public class BaseTestCase extends BaseSpringParent {
      * @param msgPart
      *            A string to find in the exception message
      */
-    public static void assertException(Throwable ex, String msgPart) {
+    public void assertException(Throwable ex, String msgPart) {
 
         assertException(ex, msgPart, null);
     }
