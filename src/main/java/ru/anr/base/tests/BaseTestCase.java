@@ -185,8 +185,9 @@ public class BaseTestCase extends BaseSpringParent {
      *            The callback
      * @param args
      *            The arguments
+     * @return true, if the the number of attempts has been exceeded
      */
-    protected void assertWaitCondition(int secs, SleepCallback callback, Object... args) {
+    protected boolean waitCondition(int secs, SleepCallback callback, Object... args) {
 
         int counter = 0;
         Set<Integer> s = new HashSet<>(PERCENTS);
@@ -203,9 +204,29 @@ public class BaseTestCase extends BaseSpringParent {
             counter += 500;
 
             if (counter > (secs * 1000)) {
-                Assert.fail("Exceeded the limit of attempts: " + secs + " s");
+                break;
             }
             sleep(500);
+        }
+        return counter > (secs * 1000);
+    }
+
+    /**
+     * Performs an expectation cycle during the specified number of seconds and
+     * checks the condition on each iteration. Throws an {@link AssertionError}
+     * if the expectation limit is exceeded.
+     * 
+     * @param secs
+     *            The number of seconds
+     * @param callback
+     *            The callback
+     * @param args
+     *            The arguments
+     */
+    protected void assertWaitCondition(int secs, SleepCallback callback, Object... args) {
+
+        if (waitCondition(secs, callback, args)) {
+            Assert.fail("Exceeded the limit of attempts: " + secs + " s");
         }
     }
 
