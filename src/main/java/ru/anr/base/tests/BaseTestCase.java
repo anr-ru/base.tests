@@ -16,10 +16,7 @@
 
 package ru.anr.base.tests;
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 import org.hamcrest.core.IsInstanceOf;
 import org.hamcrest.core.StringContains;
@@ -177,42 +174,6 @@ public class BaseTestCase extends BaseSpringParent {
 
     /**
      * Performs an expectation cycle during the specified number of seconds and
-     * checks the condition on each iteration.
-     * 
-     * @param secs
-     *            The number of seconds
-     * @param callback
-     *            The callback
-     * @param args
-     *            The arguments
-     * @return true, if the the number of attempts has been exceeded
-     */
-    protected boolean waitCondition(int secs, SleepCallback callback, Object... args) {
-
-        int counter = 0;
-        Set<Integer> s = new HashSet<>(PERCENTS);
-
-        while (!callback.doAction(args)) {
-
-            int tick = (100 * counter / (secs * 1000));
-            List<Integer> r = filter(s, i -> i < tick);
-
-            if (!r.isEmpty()) {
-                log("Wait Progress: {} %", r.get(0));
-                s.removeAll(r);
-            }
-            counter += 500;
-
-            if (counter > (secs * 1000)) {
-                break;
-            }
-            sleep(500);
-        }
-        return counter > (secs * 1000);
-    }
-
-    /**
-     * Performs an expectation cycle during the specified number of seconds and
      * checks the condition on each iteration. Throws an {@link AssertionError}
      * if the expectation limit is exceeded.
      * 
@@ -225,30 +186,8 @@ public class BaseTestCase extends BaseSpringParent {
      */
     protected void assertWaitCondition(int secs, SleepCallback callback, Object... args) {
 
-        if (waitCondition(secs, callback, args)) {
+        if (waitCondition(secs, true, callback, args)) {
             Assert.fail("Exceeded the limit of attempts: " + secs + " s");
         }
     }
-
-    /**
-     * The progress bar of expectations
-     */
-    private static final Set<Integer> PERCENTS = set(10, 25, 50, 75, 90);
-
-    /**
-     * A callback used for waitCondition(...)
-     */
-    @FunctionalInterface
-    public interface SleepCallback {
-
-        /**
-         * Some action which should return true or false
-         * 
-         * @param args
-         *            Some arguments
-         * @return if true that means the cycle must be stopped
-         */
-        boolean doAction(Object... args);
-    }
-
 }
