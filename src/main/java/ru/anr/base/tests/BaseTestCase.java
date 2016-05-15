@@ -24,6 +24,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -189,5 +190,21 @@ public class BaseTestCase extends BaseSpringParent {
         if (waitCondition(secs, true, callback, args)) {
             Assert.fail("Exceeded the limit of attempts: " + secs + " s");
         }
+    }
+
+    /**
+     * A short-cut method to explain how to use mocks in tests. The 'Mockito'
+     * objects provides plenty of static functions.
+     * 
+     * @param clazz
+     *            A class to create a mock object
+     * @return The mocked object
+     * 
+     * @param <S>
+     *            The type
+     */
+    protected <S> S mock(Class<S> clazz) {
+
+        return Mockito.mock(clazz);
     }
 }
