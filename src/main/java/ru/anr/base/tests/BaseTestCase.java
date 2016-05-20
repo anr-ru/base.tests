@@ -96,6 +96,8 @@ public class BaseTestCase extends BaseSpringParent {
             Assert.assertThat(rootException, new IsInstanceOf(expectedClass));
         }
         String msg = extractMessage(rootException);
+
+        error("Exception: '{}' with the message: '{}'", rootException, msg);
         Assert.assertThat(msg, new StringContains(msgPart));
     }
 
