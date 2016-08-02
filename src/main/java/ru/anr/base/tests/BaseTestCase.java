@@ -151,8 +151,10 @@ public class BaseTestCase extends BaseSpringParent {
          * 
          * @param x
          *            The argument
+         * @throws Exception
+         *             If a checked exception occurs
          */
-        void doSomething(Object... x);
+        void doSomething(Object... x) throws Exception;
     }
 
     /**
