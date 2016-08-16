@@ -197,6 +197,27 @@ public class BaseTestCase extends BaseSpringParent {
     }
 
     /**
+     * Performs an expectation cycle during the specified number of seconds and
+     * checks the condition on each iteration every msecSleep milliseconds.
+     * Throws an {@link AssertionError} if the expectation limit is exceeded.
+     * 
+     * @param secs
+     *            The number of seconds
+     * @param msecSleep
+     *            The number of
+     * @param callback
+     *            The callback
+     * @param args
+     *            The arguments
+     */
+    protected void assertWaitCondition(int secs, int msecSleep, SleepCallback callback, Object... args) {
+
+        if (waitCondition(secs, msecSleep, true, callback, args)) {
+            Assert.fail("Exceeded the limit of attempts: " + secs + " s");
+        }
+    }
+
+    /**
      * A short-cut method to explain how to use mocks in tests. The 'Mockito'
      * objects provides plenty of static functions.
      * 
