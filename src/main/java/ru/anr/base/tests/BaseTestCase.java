@@ -16,6 +16,8 @@
 
 package ru.anr.base.tests;
 
+import java.time.Clock;
+import java.time.ZonedDateTime;
 import java.util.Locale;
 
 import org.hamcrest.core.IsInstanceOf;
@@ -31,6 +33,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import ru.anr.base.ApplicationException;
+import ru.anr.base.BaseParent;
 import ru.anr.base.BaseSpringParent;
 
 /**
@@ -56,8 +59,8 @@ public class BaseTestCase extends BaseSpringParent {
     @Before
     public void setUp() {
 
+        BaseParent.setClock(null); // reset the clock
         LocaleContextHolder.setLocale(Locale.ENGLISH); // default
-
     }
 
     /**
@@ -231,5 +234,16 @@ public class BaseTestCase extends BaseSpringParent {
     protected <S> S mock(Class<S> clazz) {
 
         return Mockito.mock(clazz);
+    }
+
+    /**
+     * Fixes the time at the given point
+     * 
+     * @param time
+     *            The time to set
+     */
+    public static void fixTime(ZonedDateTime time) {
+
+        setClock(Clock.fixed(time.toInstant(), DEFAULT_TIMEZONE));
     }
 }
