@@ -89,6 +89,7 @@ public class ThreadJob extends BaseParent implements Runnable {
 
             long started = System.currentTimeMillis();
 
+            logger.info("Job started");
             // The main job is here
             job.execute(args.toArray(new Object[args.size()]));
 
