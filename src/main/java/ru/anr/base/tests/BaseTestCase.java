@@ -101,6 +101,9 @@ public class BaseTestCase extends BaseSpringParent {
         String msg = extractMessage(rootException);
 
         error("Exception: '{}' with the message: '{}'", rootException, msg);
+        if (logger.isDebugEnabled()) {
+            logger.debug("Exception details", ex);
+        }
         Assert.assertThat(msg, new StringContains(msgPart));
     }
 
