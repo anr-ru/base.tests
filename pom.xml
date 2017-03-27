@@ -57,17 +57,6 @@
             <scope>compile</scope>
         </dependency>            
         <dependency>
-            <groupId>net.bytebuddy</groupId>
-            <artifactId>byte-buddy</artifactId>
-            <scope>compile</scope>
-        </dependency>            
-        <dependency>
-            <groupId>net.bytebuddy</groupId>
-            <artifactId>byte-buddy-agent</artifactId>
-            <version>${bytebuddy.version}</version>
-            <scope>compile</scope>
-        </dependency>            
-        <dependency>
           <groupId>org.hamcrest</groupId>
           <artifactId>hamcrest-core</artifactId>
         </dependency>
