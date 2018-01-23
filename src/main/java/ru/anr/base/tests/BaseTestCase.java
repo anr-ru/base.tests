@@ -76,6 +76,7 @@ public class BaseTestCase extends BaseSpringParent {
      *            The type of the bean
      * 
      */
+    @Override
     protected <S> S bean(Class<S> beanClass) {
 
         return ctx.getAutowireCapableBeanFactory().createBean(beanClass);
@@ -104,7 +105,11 @@ public class BaseTestCase extends BaseSpringParent {
         if (logger.isDebugEnabled()) {
             logger.debug("Exception details", ex);
         }
-        Assert.assertThat(msg, new StringContains(msgPart));
+        if (msg == null) {
+            Assert.assertEquals(msg, msgPart);
+        } else {
+            Assert.assertThat(msg, new StringContains(msgPart));
+        }
     }
 
     /**
