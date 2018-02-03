@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/anr-ru/base.platform.parent.svg?branch=master)](https://travis-ci.org/anr-ru/base.platform.parent)
+
 ## Base.Platform Project
 
 ### Base.Platform.Tests
