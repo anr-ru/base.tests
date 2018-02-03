@@ -1,8 +1,6 @@
-Base.Platform Project
+## Base.Platform Project
 
-===========
-Base.Platform.Tests
-===========
+### Base.Platform.Tests
 
-Prototype project for JUnit testing. The BaseTestCase can be used as a parent class for JUnit tests (it contains
-a lot of diffrent short-cut and util functions).
+A prototype project for JUnit testing. The BaseTestCase class can be used as a parent class for JUnit tests,
+because it contains a lot of different short-cut and utility functions.

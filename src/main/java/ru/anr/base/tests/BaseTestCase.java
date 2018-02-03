@@ -37,7 +37,7 @@ import ru.anr.base.BaseParent;
 import ru.anr.base.BaseSpringParent;
 
 /**
- * Base testcase - preconfigured parent for all JUnit tests. It's Spring-based
+ * Base testcase - pre-configured parent for all JUnit tests. It's Spring-based
  *
  *
  * @author Alexey Romanchuk
@@ -54,7 +54,7 @@ public class BaseTestCase extends BaseSpringParent {
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
-     * Initialilzation for all tests
+     * Initialization for all tests
      */
     @Before
     public void setUp() {
