@@ -202,7 +202,7 @@ public class BaseTestCase extends BaseSpringParent {
      */
     protected static void assertWaitCondition(int secs, SleepCallback callback, Object... args) {
 
-        if (waitCondition(secs, true, callback, args)) {
+        if (waitCondition("Test Assertion", secs, true, callback, args)) {
             Assert.fail("Exceeded the limit of attempts: " + secs + " s");
         }
     }
@@ -223,7 +223,7 @@ public class BaseTestCase extends BaseSpringParent {
      */
     protected static void assertWaitCondition(int secs, int msecSleep, SleepCallback callback, Object... args) {
 
-        if (waitCondition(secs, msecSleep, true, callback, args)) {
+        if (waitCondition("Test Assertion", secs, msecSleep, true, callback, args)) {
             Assert.fail("Exceeded the limit of attempts: " + secs + " s");
         }
     }
