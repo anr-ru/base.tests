@@ -37,7 +37,7 @@ import ru.anr.base.BaseParent;
 import ru.anr.base.BaseSpringParent;
 
 /**
- * Base testcase - pre-configured parent for all JUnit tests. It's Spring-based
+ * The base testcase - a pre-configured parent for all spring-based JUnit tests.
  *
  *
  * @author Alexey Romanchuk

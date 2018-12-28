@@ -1,8 +1,10 @@
 [![Build Status](https://travis-ci.org/anr-ru/base.platform.parent.svg?branch=master)](https://travis-ci.org/anr-ru/base.platform.parent)
 
-## Base.Platform Project
+## A part of [Base.Platform Project](https://github.com/anr-ru/base.platform.parent)
 
-### Base.Platform.Tests
+### Base.Tests
 
-A prototype project for JUnit testing. The BaseTestCase class can be used as a parent class for JUnit tests,
-because it contains a lot of different short-cut and utility functions.
+The BaseTestCase class is a parent class for JUnit tests. It contains several short-cut and utility functions
+to make writing JUnit tests easier.
+
+
