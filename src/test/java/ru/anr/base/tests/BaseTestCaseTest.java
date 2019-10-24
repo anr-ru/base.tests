@@ -1,16 +1,15 @@
 /**
- * 
+ *
  */
 package ru.anr.base.tests;
 
-import java.util.Locale;
-
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.test.context.ContextConfiguration;
-
 import ru.anr.base.ApplicationException;
+
+import java.util.Locale;
 
 /**
  * Tests for {@link BaseTestCase}
@@ -29,8 +28,8 @@ public class BaseTestCaseTest extends BaseTestCase {
     @Test
     public void testInit() {
 
-        Assert.assertNotNull(getEnv());
-        Assert.assertEquals(Locale.ENGLISH, LocaleContextHolder.getLocale());
+        Assertions.assertNotNull(getEnv());
+        Assertions.assertEquals(Locale.ENGLISH, LocaleContextHolder.getLocale());
     }
 
     /**

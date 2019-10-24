@@ -1,40 +1,28 @@
-/*
- * Copyright 2014 the original author or authors.
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
- */
-
 package ru.anr.base.tests;
 
 import java.time.Clock;
 import java.time.ZonedDateTime;
 import java.util.Locale;
 
+import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.IsInstanceOf;
 import org.hamcrest.core.StringContains;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import ru.anr.base.ApplicationException;
 import ru.anr.base.BaseParent;
 import ru.anr.base.BaseSpringParent;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * The base testcase - a pre-configured parent for all spring-based JUnit tests.
@@ -44,8 +32,8 @@ import ru.anr.base.BaseSpringParent;
  * @created Oct 29, 2014
  *
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@Ignore
+@ExtendWith(SpringExtension.class)
+@Disabled
 public class BaseTestCase extends BaseSpringParent {
 
     /**
@@ -56,7 +44,7 @@ public class BaseTestCase extends BaseSpringParent {
     /**
      * Initialization for all tests
      */
-    @Before
+    @BeforeEach
     public void setUp() {
 
         BaseParent.setClock(null); // reset the clock
@@ -97,7 +85,7 @@ public class BaseTestCase extends BaseSpringParent {
         Throwable rootException = new ApplicationException(ex).getRootCause();
 
         if (expectedClass != null) {
-            Assert.assertThat(rootException, new IsInstanceOf(expectedClass));
+            assertThat(rootException, new IsInstanceOf(expectedClass));
         }
         String msg = extractMessage(rootException);
 
@@ -106,9 +94,9 @@ public class BaseTestCase extends BaseSpringParent {
             logger.debug("Exception details", ex);
         }
         if (msg == null) {
-            Assert.assertEquals(msg, msgPart);
+            Assertions.assertEquals(msg, msgPart);
         } else {
-            Assert.assertThat(msg, new StringContains(msgPart));
+            assertThat(msg, new StringContains(true, msgPart));
         }
     }
 
@@ -135,7 +123,7 @@ public class BaseTestCase extends BaseSpringParent {
      */
     public static void assertContains(String str, String part) {
 
-        Assert.assertThat(str, new StringContains(part));
+        assertThat(str, new StringContains(true, part));
     }
 
     /**
@@ -182,7 +170,7 @@ public class BaseTestCase extends BaseSpringParent {
 
         try {
             callback.doSomething(objects);
-            Assert.fail("Failure is expected");
+            Assertions.fail("Failure is expected");
         } catch (Exception ex) {
             assertException(ex, msg);
         }
@@ -203,7 +191,7 @@ public class BaseTestCase extends BaseSpringParent {
     protected static void assertWaitCondition(int secs, SleepCallback callback, Object... args) {
 
         if (waitCondition("Test Assertion", secs, true, callback, args)) {
-            Assert.fail("Exceeded the limit of attempts: " + secs + " s");
+            Assertions.fail("Exceeded the limit of attempts: " + secs + " s");
         }
     }
 
@@ -224,7 +212,7 @@ public class BaseTestCase extends BaseSpringParent {
     protected static void assertWaitCondition(int secs, int msecSleep, SleepCallback callback, Object... args) {
 
         if (waitCondition("Test Assertion", secs, msecSleep, true, callback, args)) {
-            Assert.fail("Exceeded the limit of attempts: " + secs + " s");
+            Assertions.fail("Exceeded the limit of attempts: " + secs + " s");
         }
     }
 
