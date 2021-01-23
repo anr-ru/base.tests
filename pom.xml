@@ -1,18 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	
-	<parent>
-	   <groupId>ru.anr</groupId>
-	   <artifactId>base.platform.parent</artifactId>
-	   <version>2.0.x-SNAPSHOT</version>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>ru.anr</groupId>
+        <artifactId>base.platform.parent</artifactId>
+	   <version>2.0.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>base.tests</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-	<name>Base Tests</name>
-	<description>Prototype for projects with junit testing</description>
+    <name>Base Tests</name>
+    <description>Prototype for projects with junit testing</description>
 
     <licenses>
         <license>
@@ -34,39 +34,14 @@
             <email>alexey.p.romanchuk@gmail.com</email>
             <timezone>5</timezone>
         </developer>
-    </developers>    
-    
-    
-    <distributionManagement>
-      <repository>
-        <id>packagecloud-travis</id>
-        <url>
-          packagecloud+https://packagecloud.io/ruanr/baseplatform
-        </url>
-      </repository>
-      <snapshotRepository>
-        <id>packagecloud-travis</id>
-        <url>
-          packagecloud+https://packagecloud.io/ruanr/baseplatform
-        </url>
-      </snapshotRepository>
-    </distributionManagement>
-    
-    <build>
-        <extensions>
-           <extension>
-              <groupId>io.packagecloud.maven.wagon</groupId>
-              <artifactId>maven-packagecloud-wagon</artifactId>
-           </extension>
-        </extensions>
-    </build>
+    </developers>
 
-    <dependencies>	
-		<dependency>
-		    <groupId>ru.anr</groupId>
-		    <artifactId>base.utils</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>ru.anr</groupId>
+            <artifactId>base.utils</artifactId>
             <version>2.0.x-SNAPSHOT</version>
-		</dependency>
+        </dependency>
         <!-- Yes, these all are compile dependencies in this project-->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -82,11 +57,11 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <scope>compile</scope>
-        </dependency>            
+        </dependency>
         <dependency>
-          <groupId>org.hamcrest</groupId>
-          <artifactId>hamcrest-core</artifactId>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
         </dependency>
     </dependencies>
-	
+
 </project>
