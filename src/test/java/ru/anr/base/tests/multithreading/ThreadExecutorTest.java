@@ -37,6 +37,8 @@ public class ThreadExecutorTest extends BaseTestCase {
         Assertions.assertFalse(exec.waitNotError()); // Must be an error
 
         Set<ThreadJob> jobs = exec.getJobs();
-        Assertions.assertEquals("Message", jobs.stream().filter(j -> j.getError() != null).findFirst().get().getError());
+        Assertions.assertEquals("Message", jobs.stream()
+                .filter(j -> j.getError() != null)
+                .findFirst().orElseThrow().getError());
     }
 }

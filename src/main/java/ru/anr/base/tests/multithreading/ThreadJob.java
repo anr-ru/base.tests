@@ -1,12 +1,12 @@
 /*
  * Copyright 2014 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -16,28 +16,26 @@
 
 package ru.anr.base.tests.multithreading;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import ru.anr.base.BaseParent;
+
+import java.util.List;
 
 /**
  * A ThreadJob is a slight wrapper around the {@link Runnable} object which
  * allows to measure the time spent for execution and store an error message in
  * a case of an error. It also uses a special interface {@link DoJob} for
  * Java8-styled callback through a {@link FunctionalInterface}.
- *
+ * <p>
  * ThreadJob job = new ThreadJon(x -&gt; {
- * 
+ * <p>
  * // Write a test body
- * 
+ * <p>
  * });
- * 
+ *
  * @author Alexey Romanchuk
  * @created Jul 3, 2015
- *
  */
 
 public class ThreadJob extends BaseParent implements Runnable {
@@ -60,18 +58,17 @@ public class ThreadJob extends BaseParent implements Runnable {
     /**
      * The job to do
      */
-    private DoJob job;
+    private final DoJob job;
 
     /**
      * A list of stored arguments to send as the job arguments
      */
-    private List<Object> args = list();
+    private final List<Object> args = list();
 
     /**
      * The constructor
-     * 
-     * @param job
-     *            The job to run
+     *
+     * @param job The job to run
      */
     public ThreadJob(DoJob job) {
 
@@ -80,9 +77,8 @@ public class ThreadJob extends BaseParent implements Runnable {
 
     /**
      * Adding an argument for the job executor
-     * 
-     * @param objects
-     *            Objects to add as the arguments
+     *
+     * @param objects Objects to add as the arguments
      */
     public void add(Object... objects) {
 
@@ -104,7 +100,7 @@ public class ThreadJob extends BaseParent implements Runnable {
 
             logger.info("Job started");
             // The main job is here
-            job.execute(args.toArray(new Object[args.size()]));
+            job.execute(args.toArray(new Object[0]));
 
             time = System.currentTimeMillis() - started;
             logger.info("The job completed in {} ms", time);
@@ -127,9 +123,8 @@ public class ThreadJob extends BaseParent implements Runnable {
 
     /**
      * The default error handler
-     * 
-     * @param ex
-     *            An exception
+     *
+     * @param ex An exception
      * @return A string with a message
      */
     protected String processException(Throwable ex) {
@@ -145,10 +140,9 @@ public class ThreadJob extends BaseParent implements Runnable {
 
         /**
          * The execution method
-         * 
-         * @param args
-         *            The arguments which have been added above in
-         *            {@link ThreadJob#add(Object...)}
+         *
+         * @param args The arguments which have been added above in
+         *             {@link ThreadJob#add(Object...)}
          */
         void execute(Object... args);
     }
