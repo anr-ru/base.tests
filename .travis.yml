@@ -10,13 +10,14 @@ cache:
     - "$HOME/.cache"
 before_install:
   - cp ./.mvn/ci-settings.xml $HOME/.m2/settings.xml
-
+  - export VERSIONING_GIT_TAG=$TRAVIS_TAG;
+  - export VERSIONING_GIT_BRANCH=$TRAVIS_BRANCH;
 script:
   - "mvn -P ci install"
 
 deploy:
   provider: script
-  script: "mvn -P ci deploy -DskipTests -s ./.mvn/ci_settings.xml"
+  script: "mvn -P ci deploy -DskipTests"
   skip_cleanup: false
   on:
     tags: true
