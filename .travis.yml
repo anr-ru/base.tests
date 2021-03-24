@@ -19,11 +19,11 @@ before_install:
   - mvn -v
 
 script:
-  - "$HOME/apache-maven-3.6.3/bin/mvn -P ci install -Dversioning.disable=false"
+  - "mvn -P ci install -Dversioning.disable=false"
 
 deploy:
   - provider: script
-    script: "$HOME/apache-maven-3.6.3/bin/mvn -P ci deploy -DskipTests -Dversioning.disable=false"
+    script: "mvn -P ci deploy -DskipTests -Dversioning.disable=false"
     skip_cleanup: false
     on:
-      condition: ((tag =~ /^v([0-9].*)$/) || (branch = master))
+      tags: true
