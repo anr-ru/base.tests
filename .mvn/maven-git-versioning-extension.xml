@@ -12,7 +12,7 @@
     <tag>
         <pattern>v([0-9].*)</pattern>
         <!-- i.e. '2', '1.0.1'. Force to use tags for use this dependency somewhere-->
-        <versionFormat>${tag}</versionFormat>
+        <versionFormat>${1}</versionFormat>
     </tag>
     <commit>
         <versionFormat>${version}-${commit.short}</versionFormat>
