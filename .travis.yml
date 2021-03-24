@@ -13,7 +13,11 @@ before_install:
   - export VERSIONING_GIT_TAG=$TRAVIS_TAG;
   - export VERSIONING_GIT_BRANCH=$TRAVIS_BRANCH;
   - wget -P $HOME https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
-  - tar xzvf $HOME/apache-maven-3.6.3-bin.tar.gz
+  - tar xzvf $HOME/apache-maven-3.6.3-bin.tar.gz -C $HOME
+  - ls -al $HOME
+  - ls -al $HOME/apache-maven-3.6.3/
+  - ls -al $HOME/apache-maven-3.6.3/bin
+  - pwd
   - export PATH=$HOME/apache-maven-3.6.3/bin:$PATH
   - $HOME/apache-maven-3.6.3/bin/mvn -v
 script:
