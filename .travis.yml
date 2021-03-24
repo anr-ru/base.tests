@@ -12,6 +12,10 @@ before_install:
   - cp ./.mvn/ci-settings.xml $HOME/.m2/settings.xml
   - export VERSIONING_GIT_TAG=$TRAVIS_TAG;
   - export VERSIONING_GIT_BRANCH=$TRAVIS_BRANCH;
+  - wget https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+  - tar xzvf apache-maven-3.6.0-bin.tar.gz
+  - export PATH=`pwd`/apache-maven-3.6.0/bin:$PATH
+  - mvn -v
 script:
   - "mvn -P ci install"
 
