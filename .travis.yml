@@ -8,6 +8,7 @@ services:
 cache:
   directories:
     - "$HOME/.cache"
+
 before_install:
   - cp ./.mvn/ci-settings.xml $HOME/.m2/settings.xml
   - export VERSIONING_GIT_TAG=$TRAVIS_TAG;
@@ -15,7 +16,8 @@ before_install:
   - wget -P $HOME https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
   - tar xzvf $HOME/apache-maven-3.6.3-bin.tar.gz -C $HOME
   - export PATH=$HOME/apache-maven-3.6.3/bin:$PATH
-  - $HOME/apache-maven-3.6.3/bin/mvn -v
+  - mvn -v
+
 script:
   - "$HOME/apache-maven-3.6.3/bin/mvn -P ci install -Dversioning.disable=false"
 
@@ -24,4 +26,4 @@ deploy:
     script: "$HOME/apache-maven-3.6.3/bin/mvn -P ci deploy -DskipTests -Dversioning.disable=false"
     skip_cleanup: false
     on:
-      condition: ((tag =~ /^v([0-9].*)$/) OR (branch = master))
+      condition: ((tag =~ /^v([0-9].*)$/) || (branch = master))
