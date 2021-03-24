@@ -4,10 +4,10 @@ language: java
 jdk:
   - oraclejdk8
 services:
-- docker
+  - docker
 cache:
   directories:
-  - "$HOME/.cache"
+    - "$HOME/.cache"
 before_install:
   - cp ./.mvn/ci-settings.xml $HOME/.m2/settings.xml
 
@@ -18,4 +18,4 @@ deploy:
   provider: script
   script: "mvn -P ci deploy -DskipTests"
   skip_cleanup: false
-  condition: "$TRAVIS_TAG = ^v.*$ OR branch = master"
+  condition: "$TRAVIS_TAG = ^v[0-9].*$ OR branch = master"
