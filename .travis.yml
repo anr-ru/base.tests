@@ -16,7 +16,7 @@ script:
 
 deploy:
   provider: script
-  script: "mvn -P ci deploy -DskipTests"
+  script: "mvn -P ci deploy -DskipTests -s ./.mvn/ci_settings.xml"
   skip_cleanup: false
   on:
     tags: true
