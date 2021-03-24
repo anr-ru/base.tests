@@ -1,9 +1,8 @@
-<configuration xmlns="https://github.com/qoomon/maven-git-versioning-extension" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-               xsi:schemaLocation="https://github.com/qoomon/maven-git-versioning-extension https://qoomon.github.io/maven-git-versioning-extension/configuration-6.4.0.xsd">
+<configuration>
 
     <branch>
         <pattern>master</pattern>
-        <versionFormat>${version}</versionFormat>
+        <versionFormat>${version}-${commit.short}</versionFormat>
     </branch>
     <branch>
         <pattern>.*</pattern>
