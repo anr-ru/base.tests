@@ -24,4 +24,4 @@ deploy:
     script: "mvn -P ci deploy -DskipTests -Dversioning.disable=false"
     skip_cleanup: false
     on:
-      condition: $TRAVIS_TAG = ^v.*$ OR branch = master
+      condition: "$TRAVIS_TAG = ^v.*$ OR $TRAVIS_BRANCH = master"
