@@ -17,16 +17,11 @@ before_install:
   - export PATH=$HOME/apache-maven-3.6.3/bin:$PATH
   - mvn -v
 script:
-  - "mvn -P ci install"
+  - "mvn -P ci install -Dversioning.disable=false"
 
 deploy:
   - provider: script
     script: "mvn -P ci deploy -DskipTests -Dversioning.disable=false"
     skip_cleanup: false
     on:
-      branch: master
-  - provider: script
-    script: "mvn -P ci deploy -DskipTests -Dversioning.disable=false"
-    skip_cleanup: false
-    on:
-      tags: true
+      condition: $TRAVIS_TAG = ^v.*$ OR branch = master
