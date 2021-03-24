@@ -24,4 +24,4 @@ deploy:
     script: "$HOME/apache-maven-3.6.3/bin/mvn -P ci deploy -DskipTests -Dversioning.disable=false"
     skip_cleanup: false
     on:
-      condition: (tag = /v[0-9].*/) || (branch = master)
+      condition: ((tag =~ /^v([0-9].*)$/) OR (branch = master))
