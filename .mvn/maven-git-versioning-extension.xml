@@ -1,5 +1,5 @@
 <configuration>
-
+    <preferTags>true</preferTags>
     <branch>
         <pattern>master</pattern>
         <versionFormat>${version}-${commit.short}</versionFormat>
