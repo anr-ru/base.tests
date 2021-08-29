@@ -21,18 +21,19 @@ import org.slf4j.LoggerFactory;
 import ru.anr.base.BaseParent;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * A ThreadJob is a slight wrapper around the {@link Runnable} object which
  * allows to measure the time spent for execution and store an error message in
- * a case of an error. It also uses a special interface {@link DoJob} for
- * Java8-styled callback through a {@link FunctionalInterface}.
- * <p>
- * ThreadJob job = new ThreadJon(x -&gt; {
- * <p>
+ * a case of an error. It also uses a special callback through a {@link Consumer}.
+ * <pre>
+ * ThreadJob job = new ThreadJob(x -&gt; {
+ *
  * // Write a test body
- * <p>
+ *
  * });
+ * </pre>
  *
  * @author Alexey Romanchuk
  * @created Jul 3, 2015
@@ -58,7 +59,7 @@ public class ThreadJob extends BaseParent implements Runnable {
     /**
      * The job to do
      */
-    private final DoJob job;
+    private final Consumer<Object[]> job;
 
     /**
      * A list of stored arguments to send as the job arguments
@@ -70,7 +71,7 @@ public class ThreadJob extends BaseParent implements Runnable {
      *
      * @param job The job to run
      */
-    public ThreadJob(DoJob job) {
+    public ThreadJob(Consumer<Object[]> job) {
 
         this.job = job;
     }
@@ -81,7 +82,6 @@ public class ThreadJob extends BaseParent implements Runnable {
      * @param objects Objects to add as the arguments
      */
     public void add(Object... objects) {
-
         args.addAll(list(objects));
     }
 
@@ -100,7 +100,7 @@ public class ThreadJob extends BaseParent implements Runnable {
 
             logger.info("Job started");
             // The main job is here
-            job.execute(args.toArray(new Object[0]));
+            job.accept(args.toArray(new Object[0]));
 
             time = System.currentTimeMillis() - started;
             logger.info("The job completed in {} ms", time);
@@ -132,20 +132,6 @@ public class ThreadJob extends BaseParent implements Runnable {
         return (ex.getMessage() == null) ? "error" : ex.getMessage();
     }
 
-    /**
-     * A simple interface to specify a job directly as a part of the main code
-     */
-    @FunctionalInterface
-    public interface DoJob {
-
-        /**
-         * The execution method
-         *
-         * @param args The arguments which have been added above in
-         *             {@link ThreadJob#add(Object...)}
-         */
-        void execute(Object... args);
-    }
 
     // /////////////////////////////////////////////////////////////////////////
     // /// getters/setters

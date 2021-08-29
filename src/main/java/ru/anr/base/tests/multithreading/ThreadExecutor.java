@@ -129,7 +129,6 @@ public class ThreadExecutor extends BaseParent {
         Set<Thread> s = new HashSet<Thread>(threads.keySet());
 
         while (!s.isEmpty()) {
-
             Set<Thread> rm = set();
             s.forEach(a -> {
                 if (a.getState() == State.TERMINATED) {

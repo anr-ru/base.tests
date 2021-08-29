@@ -9,6 +9,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.test.context.ContextConfiguration;
 import ru.anr.base.ApplicationException;
 
+import java.time.ZonedDateTime;
 import java.util.Locale;
 
 /**
@@ -37,11 +38,31 @@ public class BaseTestCaseTest extends BaseTestCase {
      */
     @Test
     public void testBean() {
-
         try {
             throw new ApplicationException("Throw me");
         } catch (Exception ex) {
-            assertException(ex, "Throw me", ApplicationException.class);
+            assertException(ex, "Throw me");
         }
+    }
+
+    @Test
+    public void testAssertContains() {
+        assertContains("X + Y = Z", "X +");
+        assertContains("X + Y = Z", "");
+    }
+
+    @Test
+    public void testFixedTime() {
+
+        ZonedDateTime z = now();
+        fixTime(z);
+
+        sleep(1000);
+        Assertions.assertEquals(z, now());
+    }
+
+    @Test
+    public void testLocale() {
+        Assertions.assertEquals(Locale.ENGLISH, LocaleContextHolder.getLocale());
     }
 }
