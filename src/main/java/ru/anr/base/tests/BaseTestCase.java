@@ -149,7 +149,7 @@ public class BaseTestCase extends BaseSpringParent {
         try {
             callback.doSomething(objects);
             Assertions.fail("Failure is expected");
-        } catch (Exception ex) {
+        } catch (Throwable ex) {
             assertException(ex, msg);
         }
     }
