@@ -16,10 +16,6 @@
 
 package ru.anr.base.tests;
 
-import java.time.Clock;
-import java.time.ZonedDateTime;
-import java.util.Locale;
-
 import org.hamcrest.core.IsInstanceOf;
 import org.hamcrest.core.StringContains;
 import org.junit.Assert;
@@ -31,10 +27,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import ru.anr.base.ApplicationException;
 import ru.anr.base.BaseParent;
 import ru.anr.base.BaseSpringParent;
+
+import java.time.Clock;
+import java.time.ZonedDateTime;
+import java.util.Locale;
 
 /**
  * The base testcase - a pre-configured parent for all spring-based JUnit tests.
@@ -141,15 +140,15 @@ public class BaseTestCase extends BaseSpringParent {
      * Just a call back
      */
     @FunctionalInterface
-    public interface AssertedExceptionCallback {
+    public interface AssertedExceptionCallback<S> {
 
         /**
          * Does something
          *
-         * @param x The argument
+         * @param args The arguments
          * @throws Exception If a checked exception occurs
          */
-        void doSomething(Object... x) throws Exception;
+        void doSomething(S args) throws Exception;
     }
 
     /**
@@ -159,7 +158,7 @@ public class BaseTestCase extends BaseSpringParent {
      * @param msg      The exception message to check
      * @param objects  The objects
      */
-    protected void assertException(AssertedExceptionCallback callback, String msg, Object... objects) {
+    protected <S> void assertException(AssertedExceptionCallback<S[]> callback, String msg, S... objects) {
 
         try {
             callback.doSomething(objects);
