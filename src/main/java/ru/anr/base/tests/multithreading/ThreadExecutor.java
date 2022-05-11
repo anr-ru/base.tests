@@ -1,12 +1,12 @@
 /*
  * Copyright 2014 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -16,26 +16,23 @@
 
 package ru.anr.base.tests.multithreading;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ru.anr.base.BaseParent;
+
 import java.lang.Thread.State;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import ru.anr.base.BaseParent;
-
 /**
  * The main executor with stores all thread participating in the execution and
  * their original jobs. It has functions to start all threads and check the
  * results of their executions.
  *
- *
  * @author Alexey Romanchuk
  * @created Jul 3, 2015
- *
  */
 
 public class ThreadExecutor extends BaseParent {
@@ -48,23 +45,19 @@ public class ThreadExecutor extends BaseParent {
     /**
      * A map with stored references to thread and its {@link ThreadJob}
      */
-    private Map<Thread, ThreadJob> threads = toMap();
+    private final Map<Thread, ThreadJob> threads = toMap();
 
     /**
      * The default constructor
      */
     public ThreadExecutor() {
 
-        /**
-         * Empty
-         */
     }
 
     /**
      * Adds a job to the execution pool
-     * 
-     * @param job
-     *            The job to add
+     *
+     * @param job The job to add
      */
     public void add(ThreadJob job) {
 
@@ -73,22 +66,19 @@ public class ThreadExecutor extends BaseParent {
 
     /**
      * A constructor with a full list of jobs
-     * 
-     * @param jobs
-     *            The list
+     *
+     * @param jobs The list
      */
     public ThreadExecutor(ThreadJob... jobs) {
 
-        list(jobs).forEach(j -> add(j));
+        list(jobs).forEach(this::add);
     }
 
     /**
      * A constructor with the same job which must be repeated multiple times
-     * 
-     * @param job
-     *            The job
-     * @param number
-     *            The number of threads
+     *
+     * @param job    The job
+     * @param number The number of threads
      */
     public ThreadExecutor(ThreadJob job, int number) {
 
@@ -115,12 +105,10 @@ public class ThreadExecutor extends BaseParent {
 
     /**
      * Allows to sleep for a random number of milliseconds
-     * 
-     * @param from
-     *            The lower border of the sleeping interval
-     * @param length
-     *            The maximum length for the sleeping interval (from + length =
-     *            upper border)
+     *
+     * @param from   The lower border of the sleeping interval
+     * @param length The maximum length for the sleeping interval (from + length =
+     *               upper border)
      */
     public static void sleep(long from, int length) {
 
@@ -134,7 +122,7 @@ public class ThreadExecutor extends BaseParent {
 
     /**
      * Waits until the jobs complete their execution
-     * 
+     *
      * @return true, all threads completed without errors
      */
     public boolean waitNotError() {
@@ -182,7 +170,7 @@ public class ThreadExecutor extends BaseParent {
 
     /**
      * Returns the jobs
-     * 
+     *
      * @return A set of jobs
      */
     public Set<ThreadJob> getJobs() {
@@ -203,7 +191,7 @@ public class ThreadExecutor extends BaseParent {
 
     /**
      * Returns true if the last execution completed with an error
-     * 
+     *
      * @return true, if there was an error
      */
     public boolean isError() {
