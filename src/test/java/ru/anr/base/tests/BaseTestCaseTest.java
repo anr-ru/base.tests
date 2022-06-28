@@ -14,6 +14,9 @@ import ru.anr.base.ApplicationException;
 import java.time.ZonedDateTime;
 import java.util.Locale;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Locale;
+
 /**
  * Tests for {@link BaseTestCase}
  *
@@ -141,4 +144,16 @@ public class BaseTestCaseTest extends BaseTestCase {
         Assertions.assertEquals("X", args.getValue());
     }
 
+
+    /**
+     * Testing exception
+     */
+    @Test
+    public void testAssetException() {
+
+        UnsupportedEncodingException e = new UnsupportedEncodingException("Wrong Something");
+        assertException(args -> {
+            throw new ApplicationException("Throw me", args[0]);
+        }, "Wrong Something", e);
+    }
 }
