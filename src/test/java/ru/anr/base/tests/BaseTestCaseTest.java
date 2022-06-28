@@ -11,10 +11,8 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.test.context.ContextConfiguration;
 import ru.anr.base.ApplicationException;
 
-import java.time.ZonedDateTime;
-import java.util.Locale;
-
 import java.io.UnsupportedEncodingException;
+import java.time.ZonedDateTime;
 import java.util.Locale;
 
 /**
@@ -153,7 +151,7 @@ public class BaseTestCaseTest extends BaseTestCase {
 
         UnsupportedEncodingException e = new UnsupportedEncodingException("Wrong Something");
         assertException(args -> {
-            throw new ApplicationException("Throw me", args[0]);
+            throw new ApplicationException("Throw me", (Throwable) args[0]);
         }, "Wrong Something", e);
     }
 }
