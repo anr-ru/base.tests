@@ -1,10 +1,5 @@
 package ru.anr.base.tests;
 
-import java.time.Clock;
-import java.time.ZonedDateTime;
-import java.util.Locale;
-
-import org.hamcrest.core.IsInstanceOf;
 import org.hamcrest.core.StringContains;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -105,7 +100,8 @@ public class BaseTestCase extends BaseSpringParent {
      * @param msg      The exception message to check
      * @param objects  The objects
      */
-    protected void assertException(Consumer<Object[]> callback, String msg, Object... objects) {
+    @SafeVarargs
+    protected final <S> void assertException(Consumer<S[]> callback, String msg, S... objects) {
         try {
             callback.accept(objects);
             Assertions.fail("Failure is expected");
