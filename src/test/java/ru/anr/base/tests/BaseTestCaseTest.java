@@ -154,4 +154,16 @@ public class BaseTestCaseTest extends BaseTestCase {
             throw new ApplicationException("Throw me", (Throwable) args[0]);
         }, "Wrong Something", e);
     }
+
+    /**
+     * Use case: XML comparison
+     */
+    @Test
+    public void testAssertXML() {
+
+        String xml1 = "<root>  <a /></root>";
+        String xml2 = "<root><a />\n     </root>";
+
+        assertXMLEquals(xml1, xml2);
+    }
 }

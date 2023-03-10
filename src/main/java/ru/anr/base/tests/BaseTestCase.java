@@ -161,4 +161,23 @@ public class BaseTestCase extends BaseSpringParent {
     public static void fixTime(ZonedDateTime time) {
         setClock(Clock.fixed(time.toInstant(), DEFAULT_TIMEZONE));
     }
+
+
+    /**
+     * Compares two XML with preliminary cleaning up
+     *
+     * @param expected The expected XML
+     * @param actual   The actual XML
+     */
+    public static void assertXMLEquals(String expected, String actual) {
+
+        String e = cleanUpXML(expected);
+        String r = cleanUpXML(actual);
+
+        LoggerFactory.getLogger(BaseTestCase.class).debug("RESULT: {}", r);
+        LoggerFactory.getLogger(BaseTestCase.class).debug("ETALON: {}", e);
+
+        Assertions.assertEquals(e, r);
+    }
+
 }
