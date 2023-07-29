@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 the original author or authors.
+ * Copyright 2014-2023 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,7 +16,8 @@
 
 package ru.anr.base.tests;
 
-import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.rng.UniformRandomProvider;
+import org.apache.commons.rng.simple.RandomSource;
 
 /**
  * Useful things in testing.
@@ -33,11 +34,17 @@ public final class TestUtils {
 
     }
 
+    static UniformRandomProvider rng;
+
+    static {
+        rng = RandomSource.XO_RO_SHI_RO_128_PP.create();
+    }
+
     /**
      * @return random email
      */
     public static String randomEmail() {
-        return String.format("%s@mail.com", RandomUtils.nextInt(100000, 999999));
+        return String.format("%s@mail.com", rng.nextInt(100000, 999999));
     }
 
     /**
@@ -46,7 +53,7 @@ public final class TestUtils {
      * @return random phone (in RU).
      */
     public static String randomPhone() {
-        return String.valueOf(RandomUtils.nextLong(79120000000L, 79129999999L));
+        return String.valueOf(rng.nextLong(79120000000L, 79129999999L));
     }
 
     /**
@@ -55,6 +62,6 @@ public final class TestUtils {
      * @return random phone (in US).
      */
     public static String randomAmericanPhone() {
-        return String.valueOf(RandomUtils.nextLong(15417500000L, 15417599999L));
+        return String.valueOf(rng.nextLong(15417500000L, 15417599999L));
     }
 }
