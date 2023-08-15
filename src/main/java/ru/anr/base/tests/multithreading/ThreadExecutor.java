@@ -27,7 +27,7 @@ import java.util.Random;
 import java.util.Set;
 
 /**
- * The main executor with stores all thread participating in the execution and
+ * The main executor with stores all threads participating in the execution and
  * their original jobs. It has functions to start all threads and check the
  * results of their executions.
  *
@@ -60,7 +60,6 @@ public class ThreadExecutor extends BaseParent {
      * @param job The job to add
      */
     public void add(ThreadJob job) {
-
         threads.put(new Thread(job), job);
     }
 
@@ -80,7 +79,6 @@ public class ThreadExecutor extends BaseParent {
      * @param number The number of threads
      */
     public ThreadExecutor(ThreadJob job, int number) {
-
         for (int i = 0; i < number; i++) {
             add(job);
         }
@@ -92,7 +90,6 @@ public class ThreadExecutor extends BaseParent {
      * Starts all jobs
      */
     public void start() {
-
         result.error = false;
         threads.keySet().forEach(Thread::start);
     }
@@ -103,14 +100,13 @@ public class ThreadExecutor extends BaseParent {
     private static final Random random = new Random();
 
     /**
-     * Allows to sleep for a random number of milliseconds
+     * Allows sleeping for a random number of milliseconds
      *
      * @param from   The lower border of the sleeping interval
      * @param length The maximum length for the sleeping interval (from + length =
      *               upper border)
      */
     public static void sleep(long from, int length) {
-
         sleep(from + random.nextInt(length));
     }
 
@@ -124,7 +120,7 @@ public class ThreadExecutor extends BaseParent {
      *
      * @return true, all threads completed without errors
      */
-    public boolean waitNotError() {
+    public boolean waitNoErrors() {
 
         Set<Thread> s = new HashSet<Thread>(threads.keySet());
 
@@ -141,8 +137,8 @@ public class ThreadExecutor extends BaseParent {
 
         threads.forEach((k, v) -> {
 
-            logger.debug("Thread({}): {} = {} ms, result: {}", k.getState(), k.getName(), (v.getTime()),
-                    nullSafe(v.getError()));
+            logger.debug("Thread({}): {} = {} ms, result: {}", k.getState(),
+                    k.getName(), (v.getTime()), nullSafe(v.getError()));
 
             if (v.getError() != null) {
                 result.error = true;
@@ -172,7 +168,6 @@ public class ThreadExecutor extends BaseParent {
      * @return A set of jobs
      */
     public Set<ThreadJob> getJobs() {
-
         return new HashSet<>(threads.values());
     }
 

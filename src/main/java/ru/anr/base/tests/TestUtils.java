@@ -18,6 +18,7 @@ package ru.anr.base.tests;
 
 import org.apache.commons.rng.UniformRandomProvider;
 import org.apache.commons.rng.simple.RandomSource;
+import ru.anr.base.BaseParent;
 
 /**
  * Useful things in testing.
@@ -44,7 +45,7 @@ public final class TestUtils {
      * @return random email
      */
     public static String randomEmail() {
-        return String.format("%s@mail.com", rng.nextInt(100000, 999999));
+        return String.format("%s@mail.com", BaseParent.guid().replace("-", ""));
     }
 
     /**

@@ -27,14 +27,18 @@ public class ThreadExecutorTest extends BaseTestCase {
 
         exec.add(new ThreadJob(x -> {
             // do nothing
+            sleep(20);
         }));
 
         exec.add(new ThreadJob(x -> {
             throw new ApplicationException("Message");
         }));
 
+        // Let's start ...
         exec.start();
-        Assertions.assertFalse(exec.waitNotError()); // Must be an error
+
+        Assertions.assertFalse(exec.waitNoErrors()); // Must be an error
+        Assertions.assertTrue(exec.isError());
 
         Set<ThreadJob> jobs = exec.getJobs();
         Assertions.assertEquals("Message", jobs.stream()

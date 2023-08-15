@@ -1,5 +1,6 @@
 package ru.anr.base.tests;
 
+import org.apache.commons.validator.routines.EmailValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.ContextConfiguration;
@@ -17,7 +18,9 @@ public class TestUtilsTest extends BaseTestCase {
     @Test
     void randomEmail() {
         Assertions.assertNotNull(
-                ParseUtils.regexp(TestUtils.randomEmail(), "(\\d{1,})@mail.com", 1));
+                ParseUtils.regexp(TestUtils.randomEmail(), "(\\w.*)@mail.com", 1));
+
+        EmailValidator.getInstance().isValid(TestUtils.randomEmail());
     }
 
     @Test

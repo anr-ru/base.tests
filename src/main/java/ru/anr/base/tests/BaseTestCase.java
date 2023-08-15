@@ -159,7 +159,7 @@ public class BaseTestCase extends BaseSpringParent {
 
     /**
      * A short-cut method to explain how to use mocks in tests. The 'Mockito'
-     * objects provides plenty of static functions.
+     * objects provide plenty of static functions.
      *
      * @param clazz A class to create a mock object
      * @param <S>   The type
