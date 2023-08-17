@@ -117,7 +117,6 @@ public class ThreadJob extends BaseParent implements Runnable {
      */
     @Override
     public String toString() {
-
         return "[" + time + " ms, error=" + nullSafe(error) + "]";
     }
 
@@ -128,7 +127,6 @@ public class ThreadJob extends BaseParent implements Runnable {
      * @return A string with a message
      */
     protected String processException(Throwable ex) {
-
         return (ex.getMessage() == null) ? "error" : ex.getMessage();
     }
 
